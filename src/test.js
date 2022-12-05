@@ -18,7 +18,6 @@
           F2: [189, 239, 133]
         };
 
-        /* Create layer with the transit lines */
         const transitLayer = new FeatureLayer({
           url: "https://utility.arcgis.com/usrsvcs/servers/92c6f53aec8b4db19654b313fd70b542/rest/services/Hosted/walmart100/FeatureServer/1",
           copyright:
@@ -31,12 +30,10 @@
           definitionExpression: "sens='Aller'"
         });
         webscene.add(transitLayer);
-
         function renderTransitLayer() {
           const renderer = new UniqueValueRenderer({
             field: "lineID"
           });
-
           for (let property in colors) {
             if (colors.hasOwnProperty(property)) {
               renderer.addUniqueValueInfo({
@@ -48,7 +45,7 @@
                       type: "path",
                       profile: options.profile,
                       material: {
-                        color: colors[property]
+                        color: colors[A]
                       },
                       width: options.width,
                       height: options.height,
@@ -62,8 +59,6 @@
               });
             }
           }
-
           transitLayer.renderer = renderer;
         }
-
         renderTransitLayer();
